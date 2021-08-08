@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Adicionar Evento</title>
+{% endblock %}
+
+{% block conteudo %}
+    <h2>Adicionar Evento</h2>
+    <br>
+    <form action="submit" method="POST">
+        {% csrf_token %}
+        <div class="form-group row w-50">
+            <input type="number" name="id_evento" value="{{evento.id}}" hidden>
+            <label class="col-sm-2 col-form-label">Título:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="titulo" value="{{evento.titulo}}">
+            </div>
+        </div>
+        <div class="form-group row w-50">
+            <label class="col-sm-2 col-form-label">Data:</label>
+            <div class="col-sm-10">
+                <input type="datetime-local" name="data_evento" value="{{evento.get_data_input_evento}}">
+            </div>
+        </div>
+        <div class="form-group row w-50">
+            <label class="col-sm-2 col-form-label">Descrição:</label>
+            <div class="col-sm-10">
+                <textarea name="descricao" rows="5" cols="58">{{evento.descricao}}</textarea>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success" type="submit">Salvar</button>
+            &nbsp; &nbsp;
+            <a href="/">
+                <button class="btn btn-secondary" type="button">Cancelar</button>
+            <a/>
+        </div>
+    </form>
+{% endblock %}

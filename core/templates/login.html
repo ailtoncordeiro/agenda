@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>Autenticação</title>
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block conteudo %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <div class="fadeIn first">
+            <div class="teste">
+                <img src="{% static 'img/login.png' %}" id="icon" alt="User Icon" />
+            </div>
+        </div>
+        <form action="submit" method="POST">
+            {% csrf_token %}
+            <input type="text" id="username" class="fadeIn second" name="username" placeholder="usuário">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="senha">
+            <input type="submit" class="fadeIn fourth" value="Entrar">
+        </form>
+        <div id="formFooter">
+            {% for message in messages %}
+            <ul>{{ message }}</ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
+
+
+
+
+<h1>Login</h1>
+<form action="submit" method="POST">
+    {% csrf_token %}
+    <div align="center">
+        <label>Usuário</label>
+        <input type="text" name="username">
+        <label>Senha</label>
+        <input type="password" name="password">
+        <button type="submit">Entrar</button>
+    </div>
+</form>
+<div align="center">
+    {% for message in messages %}
+    <ul>{{ message }}</ul>
+    {% endfor %}
+</div>
